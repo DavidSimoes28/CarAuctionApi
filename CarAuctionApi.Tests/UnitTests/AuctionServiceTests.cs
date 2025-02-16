@@ -43,7 +43,7 @@ public class AuctionServiceTests
 
         Assert.NotEmpty(result.Errors);
         Assert.False(result.IsValid);
-        Assert.Contains("Vehicle 1 already is in a ongoing auction", result.Errors);
+        Assert.Contains("Vehicle 1 already has an ongoing auction", result.Errors);
     }
 
     [Fact]
@@ -93,7 +93,7 @@ public class AuctionServiceTests
 
         Assert.NotEmpty(result.Errors);
         Assert.False(result.IsValid);
-        Assert.Contains("Your bid for the the vehicle 1 is lower than the starting bid", result.Errors);
+        Assert.Contains("Your bid for the vehicle 1 is lower than the starting bid", result.Errors);
     }
 
     [Fact]
@@ -107,7 +107,7 @@ public class AuctionServiceTests
 
         Assert.NotEmpty(result.Errors);
         Assert.False(result.IsValid);
-        Assert.Contains("Your bid for the the vehicle 1 is invalid", result.Errors);
+        Assert.Contains("Your bid for the vehicle 1 is invalid", result.Errors);
     }
 
     [Fact]
@@ -121,7 +121,7 @@ public class AuctionServiceTests
 
         Assert.NotEmpty(result.Errors);
         Assert.False(result.IsValid);
-        Assert.Contains("Vehicle 1 does not have a ongoing auction", result.Errors);
+        Assert.Contains("Vehicle 1 does not have an ongoing auction", result.Errors);
     }
 
     [Fact]
@@ -133,7 +133,7 @@ public class AuctionServiceTests
 
         Assert.NotEmpty(result.Errors);
         Assert.False(result.IsValid);
-        Assert.Contains("Vehicle 1 does not have a ongoing auction", result.Errors);
+        Assert.Contains("Vehicle 1 does not have an ongoing auction", result.Errors);
     }
 
     [Fact]
