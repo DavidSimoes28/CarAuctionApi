@@ -1,0 +1,49 @@
+@CarAuctionApi_HostAddress = https://localhost:7121/api
+
+POST {{CarAuctionApi_HostAddress}}/vehicles
+Accept: */*
+Content-Type: application/json
+{
+    "id": 1,
+    "type": 1,
+    "manufacturer": "manufacturer",
+    "model": "model",
+    "year": 1,
+    "startingBid": 1,
+    "doorNumber": 1,
+    "seetNumber": null,
+    "loadCapacity": null
+}
+
+###
+
+GET {{CarAuctionApi_HostAddress}}/vehicles?type=1
+Accept: */*
+Content-Type: application/json
+
+###
+
+POST {{CarAuctionApi_HostAddress}}/auctions/start
+Accept: */*
+Content-Type: application/json
+{
+    "vehicleId": 1
+}
+###
+
+PATCH {{CarAuctionApi_HostAddress}}/auctions/place-bid
+Accept: */*
+Content-Type: application/json
+{
+    "vehicleId": 1,
+    "bid": 3
+}
+###
+
+PATCH {{CarAuctionApi_HostAddress}}/auctions/close
+Accept: */*
+Content-Type: application/json
+{
+    "vehicleId": 1
+}
+###
