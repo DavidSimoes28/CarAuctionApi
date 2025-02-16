@@ -1,10 +1,9 @@
-﻿namespace CarAuctionApi.Dtos
+﻿namespace CarAuctionApi.Dtos;
+
+public enum VehicleTypeDto
 {
-    public enum VehicleTypeDto
-    {
-        Hatchback = 0,
-        Sedan = 1,
-        SUV = 2,
-        Truck = 3,
-    }
+    Hatchback = 0,
+    Sedan = 1,
+    SUV = 2,
+    Truck = 3,
 }

@@ -19,7 +19,7 @@ public static class VehicleMappingExtensions
         {
             VehicleTypeDto.Hatchback => new Hatchback(dto.Id, dto.Model, dto.Manufacturer, dto.Year, dto.StartingBid, dto.DoorNumber ?? 0),
             VehicleTypeDto.Sedan => new Sedan(dto.Id, dto.Model, dto.Manufacturer, dto.Year, dto.StartingBid, dto.DoorNumber ?? 0),
-            VehicleTypeDto.SUV => new Suv(dto.Id, dto.Model, dto.Manufacturer, dto.Year, dto.StartingBid, dto.SeetNumber ?? 0),
+            VehicleTypeDto.SUV => new Suv(dto.Id, dto.Model, dto.Manufacturer, dto.Year, dto.StartingBid, dto.SeatNumber ?? 0),
             VehicleTypeDto.Truck => new Truck(dto.Id, dto.Model, dto.Manufacturer, dto.Year, dto.StartingBid, dto.LoadCapacity ?? 0),
             _ => throw new ArgumentException("Invalid vehicle type"),
         };
@@ -30,51 +30,40 @@ public static class VehicleMappingExtensions
     /// <param name="vehicle">vehicle</param>
     /// <returns>vehicleDto</returns>
     /// <exception cref="ArgumentException">Invalid vehicle type</exception>
-    public static VehicleDto ToDto(this Vehicle vehicle) =>
-        vehicle switch
+    public static VehicleDto ToDto(this Vehicle vehicle)
+    {
+        var dto = new VehicleDto
         {
-            Hatchback hatchback => new VehicleDto 
-            {
-                Id = hatchback.Id,
-                Manufacturer = hatchback.Manufacturer,
-                Model = hatchback.Model,
-                Year = hatchback.Year,
-                Type = VehicleTypeDto.Hatchback,
-                StartingBid = hatchback.StartingBid,
-                DoorNumber = hatchback.DoorNumber
-            },
-            Sedan sedan => new VehicleDto
-            {
-                Id = sedan.Id,
-                Manufacturer = sedan.Manufacturer,
-                Model = sedan.Model,
-                Year = sedan.Year,
-                Type = VehicleTypeDto.Hatchback,
-                StartingBid = sedan.StartingBid,
-                DoorNumber = sedan.DoorNumber
-            },
-            Suv suv => new VehicleDto
-            {
-                Id = suv.Id,
-                Manufacturer = suv.Manufacturer,
-                Model = suv.Model,
-                Year = suv.Year,
-                Type = VehicleTypeDto.Hatchback,
-                StartingBid = suv.StartingBid,
-                SeetNumber = suv.SeetNumber
-            },
-            Truck truck => new VehicleDto
-            {
-                Id = truck.Id,
-                Manufacturer = truck.Manufacturer,
-                Model = truck.Model,
-                Year = truck.Year,
-                Type = VehicleTypeDto.Hatchback,
-                StartingBid = truck.StartingBid,
-                LoadCapacity = truck.LoadCapacity
-            },
-            _ => throw new ArgumentException("Invalid vehicle type"),
+            Id = vehicle.Id,
+            Manufacturer = vehicle.Manufacturer,
+            Model = vehicle.Model,
+            Year = vehicle.Year,
+            Type = VehicleTypeDto.Hatchback,
+            StartingBid = vehicle.StartingBid
         };
+
+        switch (vehicle)
+        {
+            case Hatchback hatchback:
+                dto.DoorNumber = hatchback.DoorNumber;
+                dto.Type = VehicleTypeDto.Hatchback;
+                break;
+            case Sedan sedan:
+                dto.DoorNumber = sedan.DoorNumber;
+                dto.Type = VehicleTypeDto.Sedan;
+                break;
+            case Suv suv:
+                dto.SeatNumber = suv.SeatNumber;
+                dto.Type = VehicleTypeDto.SUV;
+                break;
+            case Truck truck:
+                dto.LoadCapacity = truck.LoadCapacity;
+                dto.Type = VehicleTypeDto.Truck;
+                break;
+        }
+
+        return dto;
+    }
 
     /// <summary>
     /// Converts from list of vehicles to list of vehicleDtos

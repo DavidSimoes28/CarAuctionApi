@@ -1,19 +1,22 @@
-# Api structure
+
+To provide a simple documentation on the developed project and different topics (api structure, decisions, others), I've created this readme. Please find below the different topics informations.
+
+# API structure
 
 ```bash
 CarAuctionApi
-├─── Dtos # Contains all the dto models used by/in the api
+├─── Dtos # Contains all the API dto models
 │    ├─── AuctionDto
 │    ├─── AuctionPlaceBidDto
 │    ├─── VehicleDto
 │    └─── VehicleTypeDto
-├──── Infrastructure # Contains some models and utils to be used between endpoint and business logic
+├──── Infrastructure # Contains some models and utils to be used between endpoints and business logic
 │    ├─── EndpointExtensions 
 │    └─── EndpointResult
-├─── MappingExtensions # Mappings beetwen servie models and dtos
+├─── MappingExtensions # Mappings beetwen service models and dtos
 │    └─── VehicleMappingExtensions
-├─── Services # Constains all the bussiness logic
-│    ├─── Models # All the models of bussiness logic
+├─── Services # Service Layer - Contains the business logic
+│    ├─── Models # All the models of business logic
 │    │    ├─── Auction
 │    │    ├─── AuctionStatus
 │    │    ├─── Hatchback
@@ -22,22 +25,23 @@ CarAuctionApi
 │    │    ├─── Truck
 │    │    ├─── Vehicle
 │    │    └─── VehicleWithDoors
-│    ├─── Validators # Constains all the validation logic
+│    ├─── Validators # Contains all the validation logic
 │    │    ├─── SuvValidator
 │    │    ├─── TruckValidator
 │    │    └─── VehicleWithDoorsValidator
 │    ├─── AuctionService
 │    └─── InventoryService
-└─── Program.cs # where all endpoints are registered
+└─── Program.cs # Endpoint's registration
 ```
 
 ## Dtos
 - VehicleDto contains all the properties that a vehicle of any type can have (id, manufacturer, model, year, starting bid, house number, vehicle number, payload) and a type that identifies the type of vehicle it represents (Hatchback = 0, Sedan = 1, SUV = 2, Truck = 3). This way this model can represent any type of vehicle
 - AuctionDto contains the vehicle ID
-- AuctionPlaceBidDto contains the vehicle ID and bid amount
-- AuctionPlaceBidDto extends from AuctionDto
+- AuctionPlaceBidDto contains the vehicle ID and bid amount, extends from AuctionDto
 
 ## Models
+For the object models the inheritance concept was used, with the base class Vehicle.
+
 ### Vehicle
 ```bash
 Vehicle
@@ -47,7 +51,7 @@ Vehicle
 ├─── Suv
 └─── Truck
 ```
-- Vehicle contains all common properties of a vehicle (id, manufacturer, model, year, starting bid)
+- Vehicle is a class that contains all common properties of a vehicle (id, manufacturer, model, year, starting bid)
 - VehicleWithDoors contains all common properties of a vehicle and a number of doors property
 - Hatchback and Sedan extends from VehicleWithDoors without additional properties
 - Suv extends from Vehicle with a additional number of seats property
@@ -55,24 +59,24 @@ Vehicle
 
 ### Auction
 - Action contains a vehicleId, bid and AuctionStatus
-- The AuctionStatus contains 2 values (Started = 0 and Closed = 1)
+- The AuctionStatus contains two values (Started = 0 and Closed = 1)
 
 # Endpoints
 ## POST api/vehicles
 - This endpoint will create any type of vehicle
 - This endpoint receives a VehicleDto
 ## GET api/vehicles
-- This endpoint contain 3 optional query parameters (type, model year)
+- This endpoint contains three optional query parameters (type, model and year)
 - This endpoint will retrieve a list of vehicleDto.
 ## POST api/auctions/start
 - This endpoint will create an auction for a given vehicle
 - This endpoint receives an AuctionDto
-- It will not return any additional information about the auction, only whether the operation was successful or not (OK or BadRequest status)
+- It will return whether the operation was successful or not (OK or BadRequest status)
 ## PATCH api/auctions/place-bid
 - This endpoint will set a new value for bid in a ongoing auction
 - This endpoint receives a AuctionDto
-- It will not return any additional information about the auction, only whether the operation was successful or not (OK or BadRequest status)
+- It will return whether the operation was successful or not (OK or BadRequest status)
 ## PATCH api/auctions/close
 - This endpoint will close a ongoing auction
 - This endpoint receives a AuctionDto
-- It will not return any additional information about the auction, only whether the operation was successful or not (OK or BadRequest status)
+- It will return whether the operation was successful or not (OK or BadRequest status)

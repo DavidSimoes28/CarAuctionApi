@@ -1,7 +1,7 @@
 ﻿namespace CarAuctionApi.Services.Models;
 
-public class Suv(int id, string model, string manufacturer, int year, decimal startingBid, int seetNumber)
+public class Suv(int id, string model, string manufacturer, int year, decimal startingBid, int seatNumber)
     : Vehicle(id, model, manufacturer, year, startingBid)
 {
-    public int SeetNumber { get; set; } = seetNumber;
+    public int SeatNumber { get; set; } = seatNumber;
 }

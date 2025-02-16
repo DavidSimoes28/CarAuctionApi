@@ -56,7 +56,7 @@ public class VehicleEndpointsTests(IntegrationTestWebAppFactory integrationTestW
             Model = "modelSUV",
             Year = 2018,
             StartingBid = 20000,
-            SeetNumber = 5,
+            SeatNumber = 5,
         };
 
         var response = await httpClient.PostAsJsonAsync("api/vehicles", input);
@@ -156,7 +156,7 @@ public class VehicleEndpointsTests(IntegrationTestWebAppFactory integrationTestW
             Model = "modelSUV",
             Year = 2018,
             StartingBid = 20000,
-            SeetNumber = 5,
+            SeatNumber = 5,
         };
         var truck = new VehicleDto
         {

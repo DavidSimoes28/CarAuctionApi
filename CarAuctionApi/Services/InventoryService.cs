@@ -27,7 +27,7 @@ public class InventoryService
         if(year is not null)
             filteredVehicles = filteredVehicles.Where(x => x.Year == year);
         if (type is not null)
-            filteredVehicles = GetVehiclesByType(vehicles, type.Value);
+            filteredVehicles = GetVehiclesByType(filteredVehicles, type.Value);
 
         return new EndpointResult<List<Vehicle>>(filteredVehicles.ToList());
     }

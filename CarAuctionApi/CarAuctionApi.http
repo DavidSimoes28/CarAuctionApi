@@ -11,7 +11,7 @@ Content-Type: application/json
     "year": 1,
     "startingBid": 1,
     "doorNumber": 1,
-    "seetNumber": null,
+    "seatNumber": null,
     "loadCapacity": null
 }
 

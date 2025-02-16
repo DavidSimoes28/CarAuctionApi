@@ -19,7 +19,7 @@ public class AuctionService(InventoryService inventoryService)
             return new EndpointResult($"Vehicle {vehicleId} does not exist");
 
         if (auctions.Any(x => x.VehicleId == vehicleId && x.Status == AuctionStatus.Started))
-            return new EndpointResult($"Vehicle {vehicleId} already is in a ongoing auction");
+            return new EndpointResult($"Vehicle {vehicleId} already has an ongoing auction");
 
         var auction = new Auction() { VehicleId = vehicleId, Status = AuctionStatus.Started };
 
@@ -41,15 +41,15 @@ public class AuctionService(InventoryService inventoryService)
             return new EndpointResult($"Vehicle {vehicleId} does not exist");
 
         if (!auctions.Any(x => x.VehicleId == vehicleId && x.Status == AuctionStatus.Started))
-            return new EndpointResult($"Vehicle {vehicleId} does not have a ongoing auction");
+            return new EndpointResult($"Vehicle {vehicleId} does not have an ongoing auction");
 
         var auction = auctions.First(x => x.VehicleId == vehicleId && x.Status == AuctionStatus.Started);
 
         if(auction.Bid >= bid)
-            return new EndpointResult($"Your bid for the the vehicle {vehicleId} is invalid");
+            return new EndpointResult($"Your bid for the vehicle {vehicleId} is invalid");
 
         if (vehicle.StartingBid >= bid)
-            return new EndpointResult($"Your bid for the the vehicle {vehicleId} is lower than the starting bid");
+            return new EndpointResult($"Your bid for the vehicle {vehicleId} is lower than the starting bid");
 
         auction.Bid = bid;
 

@@ -9,7 +9,7 @@ public class VehicleDto
     public int Year { get; set; }
     public decimal StartingBid { get; set; }
     public int? DoorNumber { get; set; }
-    public int? SeetNumber { get; set; }
+    public int? SeatNumber { get; set; }
     public int? LoadCapacity { get; set; }
 
 }

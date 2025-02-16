@@ -10,7 +10,7 @@ public static class EndpointExtensions
         {
             Status = StatusCodes.Status400BadRequest,
             Title = "Validation failed",
-            Detail = "One or more errors occured"
+            Detail = "One or more errors occurred"
         };
 
         problem.Extensions.Add("errors", result.Errors);

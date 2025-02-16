@@ -39,7 +39,7 @@ public class InventoryServiceTests
             Model = "modelSUV",
             Year = 2020,
             StartingBid = 20000,
-            SeetNumber = 5,
+            SeatNumber = 5,
         });
         seededInventoryService.AddVehicle(new VehicleDto
         {
@@ -65,7 +65,7 @@ public class InventoryServiceTests
             Year = 2020,
             StartingBid = 20000,
             DoorNumber = 5,
-            SeetNumber = 6,
+            SeatNumber = 6,
             LoadCapacity = 7,
         };
 
@@ -114,7 +114,7 @@ public class InventoryServiceTests
             Year = -1,
             StartingBid = -1,
             DoorNumber = -1,
-            SeetNumber = -1,
+            SeatNumber = -1,
             LoadCapacity = -1,
         };
 
@@ -125,10 +125,10 @@ public class InventoryServiceTests
         Assert.Null(result.Result);
         Assert.NotEmpty(result.Errors);
         Assert.True(!result.IsValid);
-        Assert.Contains("Model bust not be empty", result.Errors);
-        Assert.Contains("Manufacturer bust not be empty", result.Errors);
+        Assert.Contains("Model must not be empty", result.Errors);
+        Assert.Contains("Manufacturer must not be empty", result.Errors);
         Assert.Contains("Invalid year", result.Errors);
-        Assert.Contains("Invalid stating bid", result.Errors);
+        Assert.Contains("Invalid starting bid", result.Errors);
         Assert.Contains("Invalid door number", result.Errors);
     }
 
@@ -144,7 +144,7 @@ public class InventoryServiceTests
             Year = 2020,
             StartingBid = 20000,
             DoorNumber = 5,
-            SeetNumber = 6,
+            SeatNumber = 6,
             LoadCapacity = 7,
         };
 
@@ -193,7 +193,7 @@ public class InventoryServiceTests
             Year = -1,
             StartingBid = -1,
             DoorNumber = -1,
-            SeetNumber = -1,
+            SeatNumber = -1,
             LoadCapacity = -1,
         };
 
@@ -204,10 +204,10 @@ public class InventoryServiceTests
         Assert.Null(result.Result);
         Assert.NotEmpty(result.Errors);
         Assert.True(!result.IsValid);
-        Assert.Contains("Model bust not be empty", result.Errors);
-        Assert.Contains("Manufacturer bust not be empty", result.Errors);
+        Assert.Contains("Model must not be empty", result.Errors);
+        Assert.Contains("Manufacturer must not be empty", result.Errors);
         Assert.Contains("Invalid year", result.Errors);
-        Assert.Contains("Invalid stating bid", result.Errors);
+        Assert.Contains("Invalid starting bid", result.Errors);
         Assert.Contains("Invalid door number", result.Errors);
     }
 
@@ -223,7 +223,7 @@ public class InventoryServiceTests
             Year = 2020,
             StartingBid = 20000,
             DoorNumber = 5,
-            SeetNumber = 6,
+            SeatNumber = 6,
             LoadCapacity = 7,
         };
 
@@ -272,7 +272,7 @@ public class InventoryServiceTests
             Year = -1,
             StartingBid = -1,
             DoorNumber = -1,
-            SeetNumber = -1,
+            SeatNumber = -1,
             LoadCapacity = -1,
         };
 
@@ -283,10 +283,10 @@ public class InventoryServiceTests
         Assert.Null(result.Result);
         Assert.NotEmpty(result.Errors);
         Assert.True(!result.IsValid);
-        Assert.Contains("Model bust not be empty", result.Errors);
-        Assert.Contains("Manufacturer bust not be empty", result.Errors);
+        Assert.Contains("Model must not be empty", result.Errors);
+        Assert.Contains("Manufacturer must not be empty", result.Errors);
         Assert.Contains("Invalid year", result.Errors);
-        Assert.Contains("Invalid stating bid", result.Errors);
+        Assert.Contains("Invalid starting bid", result.Errors);
         Assert.Contains("Invalid load capacity", result.Errors);
     }
 
@@ -302,7 +302,7 @@ public class InventoryServiceTests
             Year = 2020,
             StartingBid = 20000,
             DoorNumber = 5,
-            SeetNumber = 6,
+            SeatNumber = 6,
             LoadCapacity = 7,
         };
 
@@ -317,7 +317,7 @@ public class InventoryServiceTests
     }
 
     [Fact]
-    public void Should_Fail_WhenTruckSeetNumberNull()
+    public void Should_Fail_WhenTruckSeatNumberNull()
     {
         var input = new VehicleDto
         {
@@ -336,7 +336,7 @@ public class InventoryServiceTests
         Assert.Null(result.Result);
         Assert.NotEmpty(result.Errors);
         Assert.True(!result.IsValid);
-        Assert.Contains("Invalid seet number", result.Errors);
+        Assert.Contains("Invalid seat number", result.Errors);
     }
 
     [Fact]
@@ -351,7 +351,7 @@ public class InventoryServiceTests
             Year = -1,
             StartingBid = -1,
             DoorNumber = -1,
-            SeetNumber = -1,
+            SeatNumber = -1,
             LoadCapacity = -1,
         };
 
@@ -362,11 +362,11 @@ public class InventoryServiceTests
         Assert.Null(result.Result);
         Assert.NotEmpty(result.Errors);
         Assert.True(!result.IsValid);
-        Assert.Contains("Model bust not be empty", result.Errors);
-        Assert.Contains("Manufacturer bust not be empty", result.Errors);
+        Assert.Contains("Model must not be empty", result.Errors);
+        Assert.Contains("Manufacturer must not be empty", result.Errors);
         Assert.Contains("Invalid year", result.Errors);
-        Assert.Contains("Invalid stating bid", result.Errors);
-        Assert.Contains("Invalid seet number", result.Errors);
+        Assert.Contains("Invalid starting bid", result.Errors);
+        Assert.Contains("Invalid seat number", result.Errors);
     }
 
     [Fact]
@@ -381,7 +381,7 @@ public class InventoryServiceTests
             Year = 2020,
             StartingBid = 20000,
             DoorNumber = 5,
-            SeetNumber = 6,
+            SeatNumber = 6,
             LoadCapacity = 7,
         };
 
@@ -408,7 +408,7 @@ public class InventoryServiceTests
             Year = 2020,
             StartingBid = 20000,
             DoorNumber = 5,
-            SeetNumber = 6,
+            SeatNumber = 6,
             LoadCapacity = 7,
         };
 
