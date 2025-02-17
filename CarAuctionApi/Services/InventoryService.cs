@@ -2,9 +2,7 @@
 using CarAuctionApi.Infrastructure;
 using CarAuctionApi.MappingExtensions;
 using CarAuctionApi.Services.Models;
-using CarAuctionApi.Services.Validators;
 using FluentValidation;
-using FluentValidation.Results;
 
 namespace CarAuctionApi.Services;
 
@@ -53,7 +51,7 @@ public class InventoryService
 
         var vehicle = dto.ToModel();
         
-        var validationResult = ValidateVehicle(vehicle);
+        var validationResult = vehicle.Validate();
         
         if(!validationResult.IsValid)
             return new EndpointResult<Vehicle>(validationResult.Errors);
@@ -77,23 +75,6 @@ public class InventoryService
             VehicleTypeDto.Sedan => vehicles.OfType<Sedan>(),
             VehicleTypeDto.SUV => vehicles.OfType<Suv>(),
             VehicleTypeDto.Truck => vehicles.OfType<Truck>(),
-            _ => throw new ArgumentException("Invalid vehicle type")
-        };
-    }
-
-    /// <summary>
-    /// Validate vehicle
-    /// </summary>
-    /// <param name="vehicle">vehicle</param>
-    /// <exception cref="ArgumentException">invalid vehicle type</exception>
-    private static ValidationResult ValidateVehicle(Vehicle vehicle)
-    {
-        return vehicle switch
-        {
-            Hatchback hatchback => new VehicleWithDoorsValidator().Validate(hatchback),
-            Sedan sedan => new VehicleWithDoorsValidator().Validate(sedan),
-            Suv suv => new SuvValidator().Validate(suv),
-            Truck truck => new TruckValidator().Validate(truck),
             _ => throw new ArgumentException("Invalid vehicle type")
         };
     }

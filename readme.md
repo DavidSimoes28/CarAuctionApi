@@ -20,6 +20,8 @@ CarAuctionApi
 │    │    ├─── Auction
 │    │    ├─── AuctionStatus
 │    │    ├─── Hatchback
+│    │    ├─── IValidatable
+│    │    ├─── IVehicle
 │    │    ├─── Sedan
 │    │    ├─── Suv
 │    │    ├─── Truck
@@ -51,7 +53,7 @@ Vehicle
 ├─── Suv
 └─── Truck
 ```
-- Vehicle is a class that contains all common properties of a vehicle (id, manufacturer, model, year, starting bid)
+- Vehicle is a class that contains all common properties of a vehicle (id, manufacturer, model, year, starting bid) and implements IVehicle and IValidatable interfaces
 - VehicleWithDoors contains all common properties of a vehicle and a number of doors property
 - Hatchback and Sedan extends from VehicleWithDoors without additional properties
 - Suv extends from Vehicle with a additional number of seats property
